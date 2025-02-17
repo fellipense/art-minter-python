@@ -20,17 +20,19 @@ for file_name in os.listdir(parts_folder):
         
         part = parts[0]
         name = parts[1]
+        image = f"{parts_folder}/{file_name}"
         weight = parts[2].replace(".png", "")
         weight = int(weight)
     
         weights[part] = weights.get(part, 0) + weight
 
-        data.append({"part": part, "name": name, "weight": weight})
+        data.append({"part": part, "name": name, "image": image, "weight": weight})
 
 for part in data:
     temp = {}
     temp['part'] = part['part']
     temp['name'] = part['name']
+    temp['image'] = part['image']
     temp['chance'] = part['weight'] / weights[part['part']]
     partsFinal.append(temp)
 

@@ -1,12 +1,22 @@
 [
     {
+        "part": "base",
+        "name": "Padr\u00e3o",
+        "chance": 1.0
+    },
+    {
+        "part": "belly",
+        "name": "Umbigo padr\u00e3o",
+        "chance": 1.0
+    },
+    {
         "part": "background",
-        "name": "Tarde",
+        "name": "Noite",
         "chance": 0.3
     },
     {
-        "part": "base",
-        "name": "Padr\u00e3o",
+        "part": "nose",
+        "name": "Bigode padr\u00e3o",
         "chance": 1.0
     },
     {
@@ -15,38 +25,28 @@
         "chance": 0.4
     },
     {
-        "part": "chest",
-        "name": "Regata azul",
-        "chance": 0.5
-    },
-    {
-        "part": "nose",
-        "name": "Bigode padr\u00e3o",
-        "chance": 0.5
-    },
-    {
-        "part": "background",
-        "name": "Noite",
-        "chance": 0.3
+        "part": "foot",
+        "name": "Bota rosa",
+        "chance": 1.0
     },
     {
         "part": "top",
         "name": "Touca vermelha",
-        "chance": 0.4
+        "chance": 1.0
+    },
+    {
+        "part": "background",
+        "name": "Tarde",
+        "chance": 0.3
     },
     {
         "part": "legs",
         "name": "Shorts de Pizzayolo",
-        "chance": 0.1
+        "chance": 1.0
     },
     {
-        "part": "foot",
-        "name": "Bota rosa",
-        "chance": 0.3
-    },
-    {
-        "part": "belly",
-        "name": "Umbigo padr\u00e3o",
+        "part": "chest",
+        "name": "Regata azul",
         "chance": 1.0
     }
 ]

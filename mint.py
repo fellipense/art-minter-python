@@ -62,16 +62,20 @@ for i in range(0, amount):
     # Generates a unique name for the file based on other existing files
     def generate_name(base_name, extension):
         counter = 1
-        file_name = f"{base_name}{extension}"
+        file_name = base_name
         
-        while os.path.exists(os.path.join(output_dir, file_name)):
-            file_name = f"{base_name}-{counter}{extension}"
+        while os.path.exists(os.path.join(output_dir, file_name + extension)):
+            file_name = f"{base_name}-{counter}"
             counter += 1
         
         return file_name
 
-    output_file_name = os.path.join(output_dir, generate_name("mint", ".png"))
+    output_file_name = generate_name("mint", ".png")
+    output_file_path = os.path.join(output_dir, output_file_name + ".png")
 
-    # Saves the final image generated
-    final_image.save(output_file_name, "PNG")
+    # Save the final image generated
+    final_image.save(output_file_path, "PNG")
     print(f"Image saved as: {output_file_name}")
+
+    with open(os.path.join(output_dir, output_file_name + ".json"), "w") as f:
+        json.dump(mint, f, indent=4)

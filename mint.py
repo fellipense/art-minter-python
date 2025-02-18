@@ -4,79 +4,73 @@ import json
 import os
 
 part_types = []
-amount = 3
+amount = 10
 output_dir = "mints"
 
-# Loads the JSON file
+# Collects all data from json file
 with open('parts.json', 'r') as file:
     data = json.load(file)  # data is now a list of dictionaries
 
-# Iterate through the list of objects
+# Maps all the existing mintable parts
 for obj in data:
     if obj['part'] not in part_types:
         part_types.append(obj['part'])
 
+# Draw a part for the mint
 def draw(_type):
 
-    temp_items = []
+    # Store all parts of this type (ex: store all hats or shoes)
+    temp_items = [d for d in data if d['part'] == _type]
 
-    for d in data:
-        if d['part'] == _type:
-            temp_items.append(d)
-
+    # Most rares are tested first
     temp_items.sort(key=lambda item: item['chance'])
 
-    dice = random.uniform(0, 1)
+    # "fire a gun"
+    shoot = random.uniform(0, 1)
 
+    # See what the shoot hit 
     for item in temp_items:
-        if dice <= item['chance']: return item
-        else: dice -= item['chance']
+        if shoot <= item['chance']: return item
+        else: shoot -= item['chance']
 
-# Verifica se o diretório existe, se não, cria
+# Create the dir it doesn't exists
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
+# Create the amount of mints informed in 'amount'
 for i in range(0, amount):
 
-    mint = []
+    # Minting
+    mint = [draw(_type) for _type in part_types]
 
-    for _type in part_types:
-        mint.append(draw(_type))
+    # Generating the png art:
 
-
-    # IA generated:
-
-    # Abre todas as imagens e armazena em uma lista
+    # Sorting by z-layer
     mint.sort(key=lambda item: item['layer'])
-    imagens = [Image.open(item['image']).convert("RGBA") for item in mint]
+    images = [Image.open(item['image']).convert("RGBA") for item in mint]
 
-    # Encontra a altura máxima e a largura máxima entre todas as imagens
-    max_altura = max(img.height for img in imagens)
-    max_largura = max(img.width for img in imagens)
+    # Output image will have the largest dimensions between all parts images
+    max_height = max(img.height for img in images)
+    max_width = max(img.width for img in images)
+    final_image = Image.new("RGBA", (max_width, max_height), (0, 0, 0, 0))
 
-    # Cria uma imagem vazia (fundo transparente) com as dimensões máximas
-    imagem_final = Image.new("RGBA", (max_largura, max_altura), (0, 0, 0, 0))
+    # Stack images one after the other
+    for img in images:
+        final_image.paste(img, (0, 0), img)
 
-    # Cola cada imagem na frente da imagem vazia
-    for img in imagens:
-        imagem_final.paste(img, (0, 0), img)  # O terceiro argumento (img) é a máscara de transparência
-
-    def generate_name(base_nome, extensao):
-        contador = 1
-        nome_arquivo = f"{base_nome}{extensao}"
+    # Generates a unique name for the file based on other existing files
+    def generate_name(base_name, extension):
+        counter = 1
+        file_name = f"{base_name}{extension}"
         
-        # Verifica se o arquivo já existe
-        while os.path.exists(os.path.join(output_dir, nome_arquivo)):
-            nome_arquivo = f"{base_nome}-{contador}{extensao}"
-            contador += 1
+        while os.path.exists(os.path.join(output_dir, file_name)):
+            file_name = f"{base_name}-{counter}{extension}"
+            counter += 1
         
-        return nome_arquivo
+        return file_name
 
-    # Gera um nome único para o arquivo de saída
-    nome_arquivo_saida = os.path.join(output_dir, generate_name("mint", ".png"))
+    output_file_name = os.path.join(output_dir, generate_name("mint", ".png"))
 
-    # Salva a imagem final com o nome único
-    imagem_final.save(nome_arquivo_saida, "PNG")
-
-
-    print(f"Imagem salva como: {nome_arquivo_saida}")
+    # Saves the final image generated
+    final_image.save(output_file_name, "PNG")
+    print(f"Image saved as: {output_file_name}")

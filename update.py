@@ -15,7 +15,7 @@ with open(parts_json, "w") as f:
 for file_name in os.listdir(parts_folder):
 
     # Verify if it ends with ".png"
-    if file_name.endswith(".png"): continue
+    if not file_name.endswith(".png"): continue
 
     # Dismembering part properties
     parts = file_name.split(";")

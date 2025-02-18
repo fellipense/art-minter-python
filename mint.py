@@ -4,11 +4,8 @@ import json
 import os
 
 part_types = []
-
-ammount = 3
+amount = 3
 output_dir = "mints"
-
-mint = []
 
 # Loads the JSON file
 with open('parts.json', 'r') as file:
@@ -35,47 +32,51 @@ def draw(_type):
         if dice <= item['chance']: return item
         else: dice -= item['chance']
 
-for _type in part_types:
-    mint.append(draw(_type))
-
-
-# IA generated:
-
-# Abre todas as imagens e armazena em uma lista
-mint.sort(key=lambda item: item['layer'])
-imagens = [Image.open(item['image']).convert("RGBA") for item in mint]
-
-# Encontra a altura máxima e a largura máxima entre todas as imagens
-max_altura = max(img.height for img in imagens)
-max_largura = max(img.width for img in imagens)
-
-# Cria uma imagem vazia (fundo transparente) com as dimensões máximas
-imagem_final = Image.new("RGBA", (max_largura, max_altura), (0, 0, 0, 0))
-
-# Cola cada imagem na frente da imagem vazia
-for img in imagens:
-    imagem_final.paste(img, (0, 0), img)  # O terceiro argumento (img) é a máscara de transparência
-
-def generate_name(base_nome, extensao):
-    contador = 1
-    nome_arquivo = f"{base_nome}{extensao}"
-    
-    # Verifica se o arquivo já existe
-    while os.path.exists(nome_arquivo):
-        nome_arquivo = f"{base_nome}-{contador}{extensao}"
-        contador += 1
-    
-    return nome_arquivo
-
 # Verifica se o diretório existe, se não, cria
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-# Gera um nome único para o arquivo de saída
-nome_arquivo_saida = generate_name(os.path.join(output_dir, "mint"), ".png")
+for i in range(0, amount):
 
-# Salva a imagem final com o nome único
-imagem_final.save(nome_arquivo_saida, "PNG")
+    mint = []
+
+    for _type in part_types:
+        mint.append(draw(_type))
 
 
-print(f"Imagem salva como: {nome_arquivo_saida}")
+    # IA generated:
+
+    # Abre todas as imagens e armazena em uma lista
+    mint.sort(key=lambda item: item['layer'])
+    imagens = [Image.open(item['image']).convert("RGBA") for item in mint]
+
+    # Encontra a altura máxima e a largura máxima entre todas as imagens
+    max_altura = max(img.height for img in imagens)
+    max_largura = max(img.width for img in imagens)
+
+    # Cria uma imagem vazia (fundo transparente) com as dimensões máximas
+    imagem_final = Image.new("RGBA", (max_largura, max_altura), (0, 0, 0, 0))
+
+    # Cola cada imagem na frente da imagem vazia
+    for img in imagens:
+        imagem_final.paste(img, (0, 0), img)  # O terceiro argumento (img) é a máscara de transparência
+
+    def generate_name(base_nome, extensao):
+        contador = 1
+        nome_arquivo = f"{base_nome}{extensao}"
+        
+        # Verifica se o arquivo já existe
+        while os.path.exists(os.path.join(output_dir, nome_arquivo)):
+            nome_arquivo = f"{base_nome}-{contador}{extensao}"
+            contador += 1
+        
+        return nome_arquivo
+
+    # Gera um nome único para o arquivo de saída
+    nome_arquivo_saida = os.path.join(output_dir, generate_name("mint", ".png"))
+
+    # Salva a imagem final com o nome único
+    imagem_final.save(nome_arquivo_saida, "PNG")
+
+
+    print(f"Imagem salva como: {nome_arquivo_saida}")

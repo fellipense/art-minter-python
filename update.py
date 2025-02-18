@@ -15,34 +15,28 @@ with open(parts_json, "w") as f:
 for file_name in os.listdir(parts_folder):
 
     # Verify if it ends with ".png"
-    if file_name.endswith(".png"):
-        parts = file_name.split(";")
-        
-        layer = int(parts[0])
-        part = parts[1]
-        name = parts[2]
-        image = f"{parts_folder}/{file_name}"
-        weight = parts[3].replace(".png", "")
-        weight = int(weight)
-    
-        weights[part] = weights.get(part, 0) + weight
+    if file_name.endswith(".png"): continue
 
-        data.append({"part": part, "name": name, "image": image, "layer": layer, "weight": weight})
+    # Dismembering part properties
+    parts = file_name.split(";")
+    layer = int(parts[0])
+    part = parts[1]
+    name = parts[2]
+    image = f"{parts_folder}/{file_name}"
+    weight = parts[3].replace(".png", "")
+    weight = int(weight)
+    weights[part] = weights.get(part, 0) + weight
 
+    # Save raw
+    data.append({"part": part, "name": name, "image": image, "layer": layer, "weight": weight})
+
+# Save with calculated chances
 for part in data:
-    temp = {}
-    temp['part'] = part['part']
-    temp['name'] = part['name']
-    temp['image'] = part['image']
-    temp['layer'] = part['layer']
+    temp = part
     temp['chance'] = part['weight'] / weights[part['part']]
     partsFinal.append(temp)
 
-print(partsFinal)
-
-# Write data on parts.json
+# Write all data on json file
 with open(parts_json, "w") as f:
     json.dump(partsFinal, f, indent=4)
-
-# Log
 print(f"File {parts_json} updated with success!")

@@ -4,6 +4,7 @@
         "name": "Shorts de Pizzayolo",
         "image": "parts/4;legs;Shorts de Pizzayolo;01.png",
         "layer": 4,
+        "weight": 1,
         "chance": 1.0
     },
     {
@@ -11,6 +12,7 @@
         "name": "Noite",
         "image": "parts/0;background;Noite;03.png",
         "layer": 0,
+        "weight": 3,
         "chance": 0.3
     },
     {
@@ -18,6 +20,7 @@
         "name": "Bota rosa",
         "image": "parts/3;foot;Bota rosa;03.png",
         "layer": 3,
+        "weight": 3,
         "chance": 1.0
     },
     {
@@ -25,6 +28,7 @@
         "name": "Tarde",
         "image": "parts/0;background;Tarde;03.png",
         "layer": 0,
+        "weight": 3,
         "chance": 0.3
     },
     {
@@ -32,6 +36,7 @@
         "name": "Regata azul",
         "image": "parts/5;chest;Regata azul;05.png",
         "layer": 5,
+        "weight": 5,
         "chance": 1.0
     },
     {
@@ -39,6 +44,7 @@
         "name": "Padr\u00e3o",
         "image": "parts/1;base;Padr\u00e3o;1.png",
         "layer": 1,
+        "weight": 1,
         "chance": 1.0
     },
     {
@@ -46,6 +52,7 @@
         "name": "Bigode padr\u00e3o",
         "image": "parts/6;nose;Bigode padr\u00e3o;05.png",
         "layer": 6,
+        "weight": 5,
         "chance": 1.0
     },
     {
@@ -53,6 +60,7 @@
         "name": "Umbigo padr\u00e3o",
         "image": "parts/2;belly;Umbigo padr\u00e3o;1.png",
         "layer": 2,
+        "weight": 1,
         "chance": 1.0
     },
     {
@@ -60,6 +68,7 @@
         "name": "Manh\u00e3",
         "image": "parts/0;background;Manh\u00e3;04.png",
         "layer": 0,
+        "weight": 4,
         "chance": 0.4
     },
     {
@@ -67,6 +76,7 @@
         "name": "Touca vermelha",
         "image": "parts/7;top;Touca vermelha;04.png",
         "layer": 7,
+        "weight": 4,
         "chance": 1.0
     }
 ]

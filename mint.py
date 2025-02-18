@@ -4,11 +4,12 @@ import json
 import os
 
 part_types = []
+parts_json = "parts.json"
 amount = 10
 output_dir = "mints"
 
 # Collects all data from json file
-with open('parts.json', 'r') as file:
+with open(parts_json, 'r') as file:
     data = json.load(file)  # data is now a list of dictionaries
 
 # Maps all the existing mintable parts

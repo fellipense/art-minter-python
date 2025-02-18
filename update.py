@@ -18,21 +18,23 @@ for file_name in os.listdir(parts_folder):
     if file_name.endswith(".png"):
         parts = file_name.split(";")
         
-        part = parts[0]
-        name = parts[1]
+        layer = int(parts[0])
+        part = parts[1]
+        name = parts[2]
         image = f"{parts_folder}/{file_name}"
-        weight = parts[2].replace(".png", "")
+        weight = parts[3].replace(".png", "")
         weight = int(weight)
     
         weights[part] = weights.get(part, 0) + weight
 
-        data.append({"part": part, "name": name, "image": image, "weight": weight})
+        data.append({"part": part, "name": name, "image": image, "layer": layer, "weight": weight})
 
 for part in data:
     temp = {}
     temp['part'] = part['part']
     temp['name'] = part['name']
     temp['image'] = part['image']
+    temp['layer'] = part['layer']
     temp['chance'] = part['weight'] / weights[part['part']]
     partsFinal.append(temp)
 

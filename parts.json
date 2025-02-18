@@ -1,62 +1,72 @@
 [
     {
-        "part": "base",
-        "name": "Padr\u00e3o",
-        "image": "parts/base;Padr\u00e3o;1.png",
-        "chance": 1.0
-    },
-    {
-        "part": "belly",
-        "name": "Umbigo padr\u00e3o",
-        "image": "parts/belly;Umbigo padr\u00e3o;1.png",
+        "part": "legs",
+        "name": "Shorts de Pizzayolo",
+        "image": "parts/4;legs;Shorts de Pizzayolo;01.png",
+        "layer": 4,
         "chance": 1.0
     },
     {
         "part": "background",
         "name": "Noite",
-        "image": "parts/background;Noite;03.png",
+        "image": "parts/0;background;Noite;03.png",
+        "layer": 0,
         "chance": 0.3
-    },
-    {
-        "part": "nose",
-        "name": "Bigode padr\u00e3o",
-        "image": "parts/nose;Bigode padr\u00e3o;05.png",
-        "chance": 1.0
-    },
-    {
-        "part": "background",
-        "name": "Manh\u00e3",
-        "image": "parts/background;Manh\u00e3;04.png",
-        "chance": 0.4
     },
     {
         "part": "foot",
         "name": "Bota rosa",
-        "image": "parts/foot;Bota rosa;03.png",
-        "chance": 1.0
-    },
-    {
-        "part": "top",
-        "name": "Touca vermelha",
-        "image": "parts/top;Touca vermelha;04.png",
+        "image": "parts/3;foot;Bota rosa;03.png",
+        "layer": 3,
         "chance": 1.0
     },
     {
         "part": "background",
         "name": "Tarde",
-        "image": "parts/background;Tarde;03.png",
+        "image": "parts/0;background;Tarde;03.png",
+        "layer": 0,
         "chance": 0.3
-    },
-    {
-        "part": "legs",
-        "name": "Shorts de Pizzayolo",
-        "image": "parts/legs;Shorts de Pizzayolo;01.png",
-        "chance": 1.0
     },
     {
         "part": "chest",
         "name": "Regata azul",
-        "image": "parts/chest;Regata azul;05.png",
+        "image": "parts/5;chest;Regata azul;05.png",
+        "layer": 5,
+        "chance": 1.0
+    },
+    {
+        "part": "base",
+        "name": "Padr\u00e3o",
+        "image": "parts/1;base;Padr\u00e3o;1.png",
+        "layer": 1,
+        "chance": 1.0
+    },
+    {
+        "part": "nose",
+        "name": "Bigode padr\u00e3o",
+        "image": "parts/6;nose;Bigode padr\u00e3o;05.png",
+        "layer": 6,
+        "chance": 1.0
+    },
+    {
+        "part": "belly",
+        "name": "Umbigo padr\u00e3o",
+        "image": "parts/2;belly;Umbigo padr\u00e3o;1.png",
+        "layer": 2,
+        "chance": 1.0
+    },
+    {
+        "part": "background",
+        "name": "Manh\u00e3",
+        "image": "parts/0;background;Manh\u00e3;04.png",
+        "layer": 0,
+        "chance": 0.4
+    },
+    {
+        "part": "top",
+        "name": "Touca vermelha",
+        "image": "parts/7;top;Touca vermelha;04.png",
+        "layer": 7,
         "chance": 1.0
     }
 ]
